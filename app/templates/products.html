@@ -4,13 +4,27 @@
 
 <div class="btn-group" role="group">
     <a class="btn btn-secondary btn-sm" href="/">Home</a>
-    <button id="add-btn" class="btn btn-success btn-sm">Add new
-        product</button>
+    <button id="add-btn" class="btn btn-success btn-sm">Add new product</button>
     <a class="btn btn-warning btn-sm" href="/suppliers">Manage suppliers</a>
     <a class="btn btn-primary btn-sm" href="/products">Manage products</a>
 </div>
 
-
 <h2>Products</h2>
+
+{% for p in products %}
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <h3 class="card-title">{{p.productname}} </h3>
+        <h5 class="card-text">Supplier: {{p.companyname}}</h5>
+        <p class="card-text">packagesize: {{p.packagesize}} | unitprice: {{p.unitprice}}</p>
+        <p class="card-text" style="color: green;">Units in stock: {{p.unitsinstock}}</p>
+        <a href="#" class="btn btn-primary">Edit</a> <a href="/delete-product/{{s.id}}/"
+            class="btn btn-danger">Delete</a>
+        <a href="#" class="btn btn-secondary">{{p.companyname}}´s all Products</a>
+    </div>
+</div>
+
+{%endfor%}
 
 {% endblock %}
