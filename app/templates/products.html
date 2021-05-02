@@ -3,17 +3,16 @@
 {% block content %}
 
 <div class="btn-group" role="group">
-    <a class="btn btn-secondary btn-sm" href="/">Home</a>
     <button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new product</button>
     <a class="btn btn-warning btn-sm" href="/suppliers">Manage suppliers</a>
     <a class="btn btn-primary btn-sm" href="/products">Manage products</a>
+    <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
 </div>
-
 <br />
 <div id="add-div"></div>
 <br />
 
-<h2>Products</h2>
+<h1 style="color: orangered">Products</h1>
 
 {% for p in products %}
 
@@ -29,10 +28,8 @@
     </div>
 </div>
 
-{% empty %}
-<h4>No products saved in a database.</h4>
-
 {%endfor%}
+
 
 <script>
 
@@ -49,7 +46,6 @@
                 <input class="card-text" type="text" placeholder="unitprice" name="unitprice">
                 <input class="card-text" type="text" placeholder="units in stock or 0" name="unitsinstock">
                 <input class="card-text" type="text" placeholder="suppliers name" name="companyname">
-
                 <br/>
                 <input type="submit" value="Confirm" class="btn btn-success btn-sm" name="">
                 <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm" onclick="hideaddform()" value="Cancel" name="">

@@ -3,39 +3,36 @@
 {% block content %}
 
 <div class="btn-group" role="group">
-    <a class="btn btn-secondary btn-sm" href="/">Home</a>
-
     <button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new supplier</button>
-
     <a class="btn btn-warning btn-sm" href="/suppliers">Manage suppliers</a>
     <a class="btn btn-primary btn-sm" href="/products">Manage products</a>
+    <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
 </div>
 
 <br />
 <div id="add-div"></div>
 <br />
 
-<h2>Suppliers</h2>
+<h1 style="color: darkviolet">Suppliers</h1>
 
 {% for s in suppliers %}
-
 <div class="card" style="width: 50rem;">
     <div class="card-body">
         <h4 class="card-title">{{s.companyname}}</h4>
         <p class="card-text">{{s.contactname}} | phone: {{s.phone}} | email: {{s.email}} </p>
         <p class="card-text">Address: {{s.address}} | Country: {{s.country}}</p>
-        <a href="#" class="btn btn-primary">Edit</a> <a href="/delete-supplier/{{s.id}}/"
-            class="btn btn-danger">Delete</a>
-        <a href="#" class="btn btn-secondary">{{s.companyname}} Products</a>
 
+        <a href="/edit-supplier-get/{{s.id}}/" class="btn btn-primary">Edit</a>
+        <a href="/delete-supplier/{{s.id}}/" class="btn btn-danger">Delete</a>
+        <a href="/products-by-supplier/{{s.id}}/" class="btn btn-secondary">{{s.companyname}} Products</a>
     </div>
 </div>
-{% empty %}
-<h4>No suppliers saved in a database.</h4>
 
 {%endfor%}
 
+
 <script>
+
     let x = `
     <h2 style="color: lightblue">Please fill in form</h2>
     
@@ -44,7 +41,6 @@
             <form method="post" action="/add-supplier/">
     
                 {%csrf_token %}
-
                 <input class="card-text" class="card-text" type="text" placeholder="company´s name" name="companyname">
                 <input class="card-text" type="text" placeholder="contact person" name="contactname">
                 <input class="card-text" type="text" placeholder="address" name="address">
@@ -57,8 +53,6 @@
             </form>
         </div>
     </div>`
-
-
 
     function showaddform() {
         document.getElementById("add-div").innerHTML = x

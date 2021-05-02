@@ -1,3 +1,6 @@
+<!--{% load static %}
+    .js ja css tiedostoille jos olisi määritetty sellaisia -->
+
 <!DOCTYPE html>
 <html>
 
@@ -5,21 +8,97 @@
     <title>Products and vendors</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <script>
+
+        function hideFooter() {
+            let b = "<p>It was pretty handsome</p><button onClick='showFooter()'>Regret?</button>"
+            document.getElementById("footer").style.visibility = "hidden";
+            document.getElementById("show").innerHTML = b;
+        }
+
+        function showFooter() {
+            document.getElementById("footer").style.visibility = "visible";
+            document.getElementById("show").innerHTML = '';
+        }
+    </script>
+
+    <!-- omat tyylit jos olisi määritetty
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+    -->
+    <style>
+        #footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: red;
+            color: white;
+            text-align: center;
+            opacity: 60%;
+        }
+
+        #show {
+            margin-top: 50px;
+        }
+
+        #otsikko {
+            margin-top: 150px;
+            color: purple
+        }
+
+        .btn-group {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body style="background-color: silver">
+
+
     <div class="container">
         <center>
+
             {% block content %}
 
             {% endblock %}
+            <div id="show">
+            </div>
         </center>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+
+
+    <div id="footer">
+        <marquee behavior="scroll" direction="left">
+            <h5>* Wheat price +2.1% * Hereford beef import restricted from USA causing deliveries seize *
+                Chocolate price +4,1% * Larsson lax taken over by Nillsons fisk at 2.000.0000kr **
+                <button class="btn btn-warning" onclick="hideFooter()">Hide footer</button> *******
+                THIS APP WAS MADE WITH:
+                DJANGO
+                BOOTSTRAP
+                MONGODB
+                DOCKER? <button class="btn btn-warning" onclick="hideFooter()">Hide footer</button>
+            </h5>
+
+        </marquee>
+    </div>
+
+
+
 </body>
 
 </html>
